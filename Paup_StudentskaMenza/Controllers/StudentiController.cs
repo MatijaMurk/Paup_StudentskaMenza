@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Paup_StudentskaMenza.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace Paup_StudentskaMenza.Controllers
 {
     public class StudentiController : Controller
     {
+        BazaDbContext bazaPodataka = new BazaDbContext();
         // GET: Studenti
         [AllowAnonymous]
         public ActionResult Index()
@@ -16,5 +18,14 @@ namespace Paup_StudentskaMenza.Controllers
             ViewBag.Menza = "Studentska menza";
             return View();
         }
+
+        [AllowAnonymous]
+        public ActionResult Popis()
+        {
+            var smjeroviList = bazaPodataka.PopisStudenata.ToList();
+
+            return View(studenti);
+        }
+
     }
 }
