@@ -1,0 +1,30 @@
+﻿@using Paup_StudentskaMenza.Models
+@model List<Meni>
+
+@{ 
+    ViewBag.Title = "Meni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Ovotjedni meni</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+    </tr>
+    @foreach(var jelo in Model)
+            {
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena</td>
+    <td>@jelo.vege</td>
+</tr>
+            }
+</table>

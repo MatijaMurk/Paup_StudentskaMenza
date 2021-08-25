@@ -19,13 +19,6 @@ namespace Paup_StudentskaMenza.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public ActionResult Popis()
-        {
-            var smjeroviList = bazaPodataka.PopisStudenata.ToList();
-
-            return View(studenti);
-        }
-
+      
     }
 }

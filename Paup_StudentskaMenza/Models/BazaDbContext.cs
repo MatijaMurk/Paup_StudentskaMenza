@@ -10,6 +10,6 @@ namespace Paup_StudentskaMenza.Models
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class BazaDbContext : DbContext
     {
-        public DbSet<Student> PopisStudenata { get; set; }
+        public DbSet<Meni> Jelo { get; set; }
     }
 }
