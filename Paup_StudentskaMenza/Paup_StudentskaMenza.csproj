@@ -173,14 +173,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FormAuthenticationTicket.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KorisniciController.cs" />
     <Compile Include="Controllers\MeniController.cs" />
     <Compile Include="Controllers\StudentiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Misc\LogiraniKorisnik.cs" />
+    <Compile Include="Misc\LogiraniKorisnikSerializeModel.cs" />
+    <Compile Include="Misc\PasswordHelper.cs" />
     <Compile Include="Models\BazaDbContext.cs" />
+    <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\KorisnikPrijava.cs" />
     <Compile Include="Models\Meni.cs" />
+    <Compile Include="Models\Ovlast.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentiDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -223,6 +231,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Studenti\Index.cshtml" />
     <Content Include="Views\Meni\Popis.cshtml" />
+    <Content Include="Views\Korisnici\Index.cshtml" />
+    <Content Include="Views\Korisnici\Prijava.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

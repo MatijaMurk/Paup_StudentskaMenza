@@ -1,0 +1,31 @@
+﻿@using Paup_StudentskaMenza.Models;
+@model List<Korisnik>
+@{
+    ViewBag.Title = "PopisKorisnika";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Korisnicko Ime</th>
+            <th>Email</th>
+            <th>Prezime i ime</th>
+            <th>Ovlast</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kor in Model)
+            {
+        <tr>
+            <th>@kor.KorisnickoIme</th>
+            <th>@kor.Email</th>
+            <th>@kor.Prezime</th>
+            <th>@kor.Ovlast.Naziv</th>
+        </tr>
+            }
+    </tbody>
+</table>
+

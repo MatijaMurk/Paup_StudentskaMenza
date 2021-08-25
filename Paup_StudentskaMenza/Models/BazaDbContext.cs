@@ -11,5 +11,7 @@ namespace Paup_StudentskaMenza.Models
     public class BazaDbContext : DbContext
     {
         public DbSet<Meni> Jelo { get; set; }
+        public DbSet<Korisnik> PopisKorisnika { get; set; }
+        public DbSet<Ovlast> PopisOvlasti { get; set; }
     }
 }
