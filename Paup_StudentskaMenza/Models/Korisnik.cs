@@ -21,18 +21,22 @@ namespace Paup_StudentskaMenza.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
         public string Lozinka { get; set; }
         [Display(Name ="Prezime")]
-
         [Required]
         public string Prezime { get; set; }
+
         [Display(Name ="Ime")]
         [Required]
         public string Ime { get; set; }
 
         public string PrezimeIme
-        { get
-            { return Prezime + " " + Ime; }
+        {
+            get
+            {
+                return Prezime + " " + Ime; 
+            }
         }
         [Column("ovlast")]
         [Display(Name ="Ovlast")]

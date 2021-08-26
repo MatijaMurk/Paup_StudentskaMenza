@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Paup_StudentskaMenza.Misc;
 
 namespace Paup_StudentskaMenza.Controllers
 {
@@ -10,6 +11,12 @@ namespace Paup_StudentskaMenza.Controllers
     {
         public ActionResult Index()
         {
+            LogiraniKorisnik logkor = User as LogiraniKorisnik;
+            if(logkor !=null)
+            {
+                ViewBag.Logirani = logkor.KorisnickoIme;
+
+            }
             return View();
         }
 

@@ -29,6 +29,7 @@ namespace Paup_StudentskaMenza.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -36,7 +37,7 @@ namespace Paup_StudentskaMenza.Controllers
         {
             if (ModelState.IsValid)
             {
-                var korisnikBaza = bazaPodataka.PopisKorisnika.FirstOrDefault(x => x.KorisnickoIme == model.KorisnickIme);
+                var korisnikBaza = bazaPodataka.PopisKorisnika.FirstOrDefault(x => x.KorisnickoIme == model.KorisnickoIme);
                 if(korisnikBaza !=null)
                 {
                     var passwordOK = korisnikBaza.Lozinka == Misc.PasswordHelper.IzracunajHash(model.Lozinka);
@@ -48,7 +49,8 @@ namespace Paup_StudentskaMenza.Controllers
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
                         string korisnickiPodaci = serializer.Serialize(serializeModel);
 
-                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1,
+                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
+                            1,
                             prijavljeniKorisnik.Identity.Name,
                             DateTime.Now,
                             DateTime.Now.AddDays(1),
@@ -59,7 +61,7 @@ namespace Paup_StudentskaMenza.Controllers
                         HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketEncrypted);
                         Response.Cookies.Add(cookie);
 
-                        if(!string.IsNullOrEmpty(returnUrl)&&Url.IsLocalUrl(returnUrl))
+                        if(!String.IsNullOrEmpty(returnUrl)&&Url.IsLocalUrl(returnUrl))
                         {
                             return Redirect(returnUrl);
 

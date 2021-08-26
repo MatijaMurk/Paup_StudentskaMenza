@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,6 +30,7 @@ namespace Paup_StudentskaMenza
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 LogiraniKorisnikSerializeModel serializeModel = serializer.Deserialize<LogiraniKorisnikSerializeModel>(authTicket.UserData);
                 LogiraniKorisnik korisnik = new LogiraniKorisnik(authTicket.Name);
+                korisnik.PrezimeIme = serializeModel.PrezimeIme;
                 korisnik.Ovlast = serializeModel.Ovlast;
                 HttpContext.Current.User = korisnik;
             }
