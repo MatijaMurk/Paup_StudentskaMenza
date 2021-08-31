@@ -21,7 +21,7 @@ namespace Paup_StudentskaMenza
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-        protected void Apllication_PostAuthenticateRequest(Object sender,EventArgs e)
+        protected void Application_PostAuthenticateRequest(Object sender,EventArgs e)
         {
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if(authCookie!=null)
