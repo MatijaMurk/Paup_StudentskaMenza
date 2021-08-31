@@ -23,19 +23,25 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Meni", "Popis", "Meni")</li>
-                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Korisnici","Index","Korisnici")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.Identity.IsAuthenticated &&
+                        (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+                    {
+                        <li>@Html.ActionLink("Korisnici", "Index", "Korisnici")</li>
+                    }
+                </ul>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink(((User as LogiraniKorisnik).PrezimeIme), "Index", "Home")</li>
-                        <li>@Html.ActionLink("Odjava" ,"Odjava", "Korisnici")</li>
+                        <li>@Html.ActionLink("Odjava", "Odjava", "Korisnici")</li>
                     }
                     else
-                       {
-                          <li>@Html.ActionLink("Prijava", "Prijava", "Korisnici")</li>
-                       }
+                    {
+                        <li>@Html.ActionLink("Registracija", "Registracija", "Korisnici")</li>
+                        <li>@Html.ActionLink("Prijava", "Prijava", "Korisnici")</li>
+                    }
                 </ul>
             </div>
         </div>
