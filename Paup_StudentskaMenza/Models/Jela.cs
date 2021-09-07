@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,7 @@ using System.Web;
 namespace Paup_StudentskaMenza.Models
 {
     [Table("jelo")]
-    public class Meni
+    public class Jela
     {
         [Key]
         [Column("idjela")]
@@ -30,14 +31,29 @@ namespace Paup_StudentskaMenza.Models
 
         [Column("cijena")]
         [Display(Name = "Cijena")]
-        public int Cijena { get; set; }
-
-        
+        [Required(ErrorMessage = "{0} je obavezno")]
+        [DisplayFormat(DataFormatString = "{0:C1}", ApplyFormatInEditMode = false)]
+        [DataType(DataType.Currency)]
+        public float? Cijena { get; set; }
+       
 
         [Column("vegetarijansko")]
         [Display(Name = "Vegetarijansko")]
+        [Required(ErrorMessage = "{0} je obavezno")]
         public bool vege { get; set; }
 
-      
+        [Column("kolicina")]
+        [Display(Name = "Količina")]
+        [Required(ErrorMessage = "{0} je obavezno")]
+        public int kolicina { get; set; }
+        public enum Dani
+        {
+            Ponedjeljak,
+            Utorak,
+            Srijeda,
+            Četvrtak,
+            Petak
+            /**/
+        }
     }
 }

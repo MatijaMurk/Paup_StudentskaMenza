@@ -12,7 +12,7 @@ using Paup_StudentskaMenza.Controllers;
 
 namespace Paup_StudentskaMenza.Controllers
 {
-    public class KorisniciController : Controller
+    public class KorisniciController : BaseController
     {
         BazaDbContext bazaPodataka = new BazaDbContext();
         // GET: Korisnici

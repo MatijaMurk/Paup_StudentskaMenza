@@ -7,7 +7,7 @@ using Paup_StudentskaMenza.Misc;
 
 namespace Paup_StudentskaMenza.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

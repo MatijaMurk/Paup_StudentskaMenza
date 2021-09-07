@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Paup_StudentskaMenza.Controllers
 {
-    public class StudentiController : Controller
+    public class StudentiController : BaseController
     {
         BazaDbContext bazaPodataka = new BazaDbContext();
         // GET: Studenti

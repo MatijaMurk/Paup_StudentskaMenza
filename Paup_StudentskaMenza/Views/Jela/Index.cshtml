@@ -1,0 +1,53 @@
+﻿@using Paup_StudentskaMenza.Models
+
+@model List<Jela>
+
+
+@{
+    ViewBag.Title = "Popis jela";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Popis jela</h2>
+
+<a href="@Url.Action("Azuriraj", "Jela")" class="btn btn-success">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+</a>
+
+<br />
+<br />
+
+<table class="table table-responsive">
+
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+        <th>Količina</th>
+    </tr>
+    @foreach (var jelo in Model)
+    {
+        <tr>
+            <td>@jelo.Id</td>
+            <td>@jelo.Naziv</td>
+            <td>@jelo.Opis</td>
+            <td>@jelo.Cijena </td>
+            @if (jelo.vege == true)
+            {
+                <td>Da</td>
+            }
+            else
+            {
+                <td>Ne</td>
+            }
+            <td>@jelo.kolicina</td>
+            <td> @Html.ActionLink("Obriši", "Delete", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+            <td> @Html.ActionLink("Ažuriraj", "Azuriraj", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+        </tr>
+
+
+    }
+
+</table>

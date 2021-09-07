@@ -1,30 +1,97 @@
-﻿@using Paup_StudentskaMenza.Models
-@model List<Meni>
+﻿
 
-@{ 
+@{
     ViewBag.Title = "Meni";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
+
 <h2>Ovotjedni meni</h2>
 
-<table class="table table-striped">
+
+
+<h3>@DateTime.Now.Date.ToString("dddd").ToUpper(), @DateTime.Now.Date.ToShortDateString()</h3>
+
+<a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+</a>
+
+<table class="table table-responsive">
+
     <tr>
         <th>ID</th>
         <th>Naziv</th>
         <th>Opis</th>
         <th>Cijena</th>
         <th>Vege</th>
+        <th>Količina</th>
     </tr>
-    @foreach(var jelo in Model)
+    @foreach (var jelo in Model)
+    {
+        <tr>
+            <td>@jelo.Id</td>
+            <td>@jelo.Naziv</td>
+            <td>@jelo.Opis</td>
+            <td>@jelo.Cijena </td>
+            @if (jelo.vege == true)
             {
-<tr>
-    <td>@jelo.Id</td>
-    <td>@jelo.Naziv</td>
-    <td>@jelo.Opis</td>
-    <td>@jelo.Cijena</td>
-    <td>@jelo.vege</td>
-</tr>
+                <td>Da</td>
             }
+            else
+            {
+                <td>Ne</td>
+            }
+            <td>@jelo.kolicina</td>
+            <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+            <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+            <td> @Html.ActionLink("Ažuriraj", "Azuriraj","Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+        </tr>
+
+
+    }
+
+</table>
+
+
+<h3> @DateTime.Now.Date.AddDays(1).ToString("ddddd").ToUpper(), @DateTime.Now.Date.AddDays(1).ToShortDateString()</h3>
+
+<a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+</a>
+
+<table class="table table-responsive">
+
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+        <th>Količina</th>
+    </tr>
+    @foreach (var jelo in Model)
+    {
+        <tr>
+            <td>@jelo.Id</td>
+            <td>@jelo.Naziv</td>
+            <td>@jelo.Opis</td>
+            <td>@jelo.Cijena </td>
+            @if (jelo.vege == true)
+            {
+                <td>Da</td>
+            }
+            else
+            {
+                <td>Ne</td>
+            }
+            <td>@jelo.kolicina</td>
+            <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+            <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+            <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+        </tr>
+
+
+    }
+
 </table>
