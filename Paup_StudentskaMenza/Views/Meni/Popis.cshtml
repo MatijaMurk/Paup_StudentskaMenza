@@ -1,4 +1,4 @@
-﻿
+﻿@using Paup_StudentskaMenza.Misc;
 
 @{
     ViewBag.Title = "Meni";
@@ -13,9 +13,14 @@
 
 <h3>@DateTime.Now.Date.ToString("dddd").ToUpper(), @DateTime.Now.Date.ToShortDateString()</h3>
 
-<a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
-</a>
+@if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+    </a>
+}
+
 
 <table class="table table-responsive">
 
@@ -29,24 +34,29 @@
     </tr>
     @foreach (var jelo in Model)
     {
-        <tr>
-            <td>@jelo.Id</td>
-            <td>@jelo.Naziv</td>
-            <td>@jelo.Opis</td>
-            <td>@jelo.Cijena </td>
-            @if (jelo.vege == true)
-            {
-                <td>Da</td>
-            }
-            else
-            {
-                <td>Ne</td>
-            }
-            <td>@jelo.kolicina</td>
-            <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
-            <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
-            <td> @Html.ActionLink("Ažuriraj", "Azuriraj","Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
-        </tr>
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena </td>
+    @if (jelo.vege == true)
+    {
+        <td>Da</td>
+    }
+    else
+    {
+        <td>Ne</td>
+    }
+      <td>@jelo.kolicina</td>
+      <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+      @if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+        {
+        <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+        }
+
+</tr>
 
 
     }
@@ -56,9 +66,14 @@
 
 <h3> @DateTime.Now.Date.AddDays(1).ToString("ddddd").ToUpper(), @DateTime.Now.Date.AddDays(1).ToShortDateString()</h3>
 
-<a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
-</a>
+@if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+    </a>
+}
+
 
 <table class="table table-responsive">
 
@@ -72,24 +87,334 @@
     </tr>
     @foreach (var jelo in Model)
     {
-        <tr>
-            <td>@jelo.Id</td>
-            <td>@jelo.Naziv</td>
-            <td>@jelo.Opis</td>
-            <td>@jelo.Cijena </td>
-            @if (jelo.vege == true)
-            {
-                <td>Da</td>
-            }
-            else
-            {
-                <td>Ne</td>
-            }
-            <td>@jelo.kolicina</td>
-            <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
-            <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
-            <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
-        </tr>
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena </td>
+    @if (jelo.vege == true)
+    {
+        <td>Da</td>
+    }
+    else
+    {
+        <td>Ne</td>
+    }
+    <td>@jelo.kolicina</td>
+    <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+    @if (User.Identity.IsAuthenticated &&
+          (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+    {
+        <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+    }
+</tr>
+
+
+    }
+
+</table>
+
+<h3> @DateTime.Now.Date.AddDays(2).ToString("ddddd").ToUpper(), @DateTime.Now.Date.AddDays(2).ToShortDateString()</h3>
+
+@if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+    </a>
+}
+
+<table class="table table-responsive">
+
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+        <th>Količina</th>
+    </tr>
+    @foreach (var jelo in Model)
+    {
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena </td>
+    @if (jelo.vege == true)
+    {
+        <td>Da</td>
+    }
+    else
+    {
+        <td>Ne</td>
+    }
+    <td>@jelo.kolicina</td>
+    <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+    @if (User.Identity.IsAuthenticated &&
+         (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+    {
+        <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+    }
+</tr>
+
+
+    }
+
+</table>
+
+<h3> @DateTime.Now.Date.AddDays(3).ToString("ddddd").ToUpper(), @DateTime.Now.Date.AddDays(3).ToShortDateString()</h3>
+
+@if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+    </a>
+}
+
+
+<table class="table table-responsive">
+
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+        <th>Količina</th>
+    </tr>
+    @foreach (var jelo in Model)
+    {
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena </td>
+    @if (jelo.vege == true)
+    {
+        <td>Da</td>
+    }
+    else
+    {
+        <td>Ne</td>
+    }
+    <td>@jelo.kolicina</td>
+    <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+    @if (User.Identity.IsAuthenticated &&
+         (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+    {
+        <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+    }
+</tr>
+
+
+    }
+
+</table>
+
+<h3> @DateTime.Now.Date.AddDays(4).ToString("ddddd").ToUpper(), @DateTime.Now.Date.AddDays(4).ToShortDateString()</h3>
+
+@if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+    </a>
+}
+
+<table class="table table-responsive">
+
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+        <th>Količina</th>
+    </tr>
+    @foreach (var jelo in Model)
+    {
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena </td>
+    @if (jelo.vege == true)
+    {
+        <td>Da</td>
+    }
+    else
+    {
+        <td>Ne</td>
+    }
+    <td>@jelo.kolicina</td>
+    <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+    @if (User.Identity.IsAuthenticated &&
+         (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+    {
+        <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+    }
+</tr>
+
+
+    }
+
+</table>
+
+
+<h3> @DateTime.Now.Date.AddDays(5).ToString("ddddd").ToUpper(), @DateTime.Now.Date.AddDays(5).ToShortDateString()</h3>
+
+@if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+    </a>
+}
+
+
+<table class="table table-responsive">
+
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+        <th>Količina</th>
+    </tr>
+    @foreach (var jelo in Model)
+    {
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena </td>
+    @if (jelo.vege == true)
+    {
+        <td>Da</td>
+    }
+    else
+    {
+        <td>Ne</td>
+    }
+    <td>@jelo.kolicina</td>
+    <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+    @if (User.Identity.IsAuthenticated &&
+         (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+    {
+        <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+    }
+</tr>
+
+
+    }
+
+</table>
+
+
+<h3> @DateTime.Now.Date.AddDays(6).ToString("ddddd").ToUpper(), @DateTime.Now.Date.AddDays(6).ToShortDateString()</h3>
+
+@if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+    </a>
+}
+
+<table class="table table-responsive">
+
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+        <th>Količina</th>
+    </tr>
+    @foreach (var jelo in Model)
+    {
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena </td>
+    @if (jelo.vege == true)
+    {
+        <td>Da</td>
+    }
+    else
+    {
+        <td>Ne</td>
+    }
+    <td>@jelo.kolicina</td>
+    <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+    @if (User.Identity.IsAuthenticated &&
+         (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+    {
+        <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+    }
+</tr>
+
+
+    }
+
+</table>
+
+
+<h3> @DateTime.Now.Date.AddDays(7).ToString("ddddd").ToUpper(), @DateTime.Now.Date.AddDays(7).ToShortDateString()</h3>
+
+@if (User.Identity.IsAuthenticated &&
+                     (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <a href="@Url.Action("Azuriraj", "Meni")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dodaj jelo
+    </a>
+}
+
+
+<table class="table table-responsive">
+
+    <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Opis</th>
+        <th>Cijena</th>
+        <th>Vege</th>
+        <th>Količina</th>
+    </tr>
+    @foreach (var jelo in Model)
+    {
+<tr>
+    <td>@jelo.Id</td>
+    <td>@jelo.Naziv</td>
+    <td>@jelo.Opis</td>
+    <td>@jelo.Cijena </td>
+    @if (jelo.vege == true)
+    {
+        <td>Da</td>
+    }
+    else
+    {
+        <td>Ne</td>
+    }
+    <td>@jelo.kolicina</td>
+    <td> @Html.ActionLink("Naruči", "Index", new { id = jelo.Id }, new { @class = "btn btn-success btn-sm" })</td>
+    @if (User.Identity.IsAuthenticated &&
+         (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+    {
+        <td> @Html.ActionLink("Obriši", "Index", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+        <td> @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
+    }
+</tr>
 
 
     }
