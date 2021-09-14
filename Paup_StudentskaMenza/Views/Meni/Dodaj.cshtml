@@ -1,0 +1,117 @@
+﻿@using Paup_StudentskaMenza.Misc;
+
+@model Tuple<IEnumerable<SelectListItem>>
+
+@{
+    ViewBag.Title = "Dodaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Naziv").val(0);
+        $("#Naziv").change(function () {
+
+            var jeloId = $("#Naziv").val();
+            DohvatiCijenu(jeloId);
+        });
+
+        $("input[type=text]").change(function () {
+            IzracunajUkupnuCijenu();
+        });
+        $("#btnDodaj").click(function () {
+            DodajUMeni();
+        });
+    });
+
+    function DodajUMeni() {
+        var tblMeni
+    }
+
+    function IzracunajUkupnuCijenu() {
+        var jelocijena = $("#txtJeloCijena").val();
+        var kolicina = $("#txtKolicinaJela").val();
+
+        var ukupno = jelocijena * kolicina;
+
+        $("#txtUkupnaCijena").val(parseFloat(ukupno).toFixed(2));
+    }
+
+    function DohvatiCijenu(jeloId) {
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: { jeloId: jeloId },
+            url: '/meni/dohvatiCijenu',
+            success: function (data) {
+                $("#txtJeloCijena").val(parseFloat(data).toFixed(2));
+            },
+            error: function () {
+                alert("Problem s cijenom.");
+            }
+        });
+
+    }
+</script>
+
+@if (User.Identity.IsAuthenticated &&
+                         (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <h3>Dodaj jelo</h3>
+
+    <fieldset>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        Naziv :
+                        @Html.DropDownList("Naziv", new SelectList(Model.Item1, "Value", "Text"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        Cijena :
+                        <input type="text" readonly="readonly" id="txtJeloCijena" value="0.00" name="JeloCijena" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        Količina :
+                        <input type="text" id="txtKolicinaJela" value="" name="JeloKolicina" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        Ukupna cijena :
+                        <input type="text" readonly="readonly" id="txtUkupnaCijena" value="0.00" name="UkupnaCijena" class="form-control" />
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+
+                <input type="button" style="margin-top: 20px; float:right" id="btnDodaj" value="Dodaj" name="JeloCijena" class="btn btn-success" />
+
+            </div>
+        </div>
+    </fieldset>
+}
+
+
+<table class="table table-responsive" id="tblPon">
+    <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Naziv</th>
+            <th>Opis</th>
+            <th>Vege</th>
+            <th>Količina</th>
+            <th>Cijena</th>
+        </tr>
+    </thead>
+</table>
+

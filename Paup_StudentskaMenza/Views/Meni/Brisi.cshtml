@@ -1,0 +1,27 @@
+﻿@model Paup_StudentskaMenza.Models.Meni
+
+@{
+    ViewBag.Title = "Briši";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<strong>Jeste li sigurni da želita izbrisati jelo @Model.NazivJelo.Naziv iz dana @Model.dan ?</strong>
+
+<br />
+<br />
+
+@using (Html.BeginForm("Brisi", "Meni"))
+{
+    @Html.AntiForgeryToken();
+
+    <button type="submit" class="btn btn-danger">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Izbriši
+    </button>
+
+    <br />
+    <br />
+
+    @Html.ActionLink("Odustani", "Popis")
+}

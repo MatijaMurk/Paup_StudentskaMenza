@@ -1,0 +1,104 @@
+﻿@using Paup_StudentskaMenza.Models
+@using Paup_StudentskaMenza.Misc;
+@model List<Meni>
+@{
+    AjaxOptions ajaxOpt = new AjaxOptions()
+    {
+        UpdateTargetId = "popisMenija",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnBegin = "LoadingRow"
+    };
+
+}
+
+<div id="popisMenija">
+    @for (int i = 0; i < 7; i++)
+    {
+        if (i == 0)
+        {
+            <h3>Danas je @DateTime.Now.AddDays(i).Date.ToString("dddd"), @DateTime.Now.AddDays(i).Date.ToShortDateString()</h3>
+        }
+        else
+        {
+            <h3> @DateTime.Now.AddDays(i).Date.ToString("dddd").ToUpper(), @DateTime.Now.AddDays(i).Date.ToShortDateString()</h3>
+        }
+
+        <table id="tableJela" class="table table-striped">
+
+            <thead style="color:palevioletred">
+                <tr>
+                    <th hidden>Id</th>
+
+                    <th>
+                        <strong>Naziv</strong>
+                    </th>
+                    <th>Opis</th>
+                    <th>Cijena</th>
+                    <th>Vege</th>
+                    @if (User.Identity.IsAuthenticated &&
+((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator)))
+                    {
+                        <th>Akcije</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var meni in Model)
+                    {
+                        if (meni.dan.ToString().ToUpper() == DateTime.Now.AddDays(i).Date.ToString("dddd").ToUpper())
+                        {
+                            <tr>
+                                <td hidden>@meni.Idmeni</td>
+                                <td>@(meni.NazivJelo?.Naziv)</td>
+                                <td>@(meni.NazivJelo?.Opis)</td>
+                                <td>@(meni.NazivJelo?.Cijena)</td>
+                                @if (meni.NazivJelo.vege == true)
+                                {
+                                    <td>Da</td>
+                                }
+                                else
+                                {
+                                    <td>Ne</td>
+                                }
+
+                                @if (User.Identity.IsAuthenticated &&
+                                           ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator)))
+                                {
+                                    <td>
+
+                                        @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm" })
+                                        @Html.ActionLink("Izbriši", "Brisi", new { id = meni.Idmeni }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                }
+
+                else
+                {
+                    <tr>
+                        <td colspan="7" style="text-align:center;"> Nema rezultata pretrage</td>
+
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    }
+
+    <p>
+        <a href="@Url.Action("IspisMenija", "Meni",
+                new {  naziv = ViewBag.Naziv,
+                     })" class="btn btn-primary">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Kreiraj PDF
+        </a>
+    </p>
+</div>
+
+
