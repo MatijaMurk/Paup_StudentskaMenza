@@ -1,0 +1,54 @@
+﻿@using Paup_StudentskaMenza.Controllers
+@{
+    ViewBag.Title = "Kosarica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Košarica</h2>
+<table id="tableKosarica" class="table table-striped">
+
+    <thead style="color:palevioletred">
+        <tr>
+            <th hidden>Id</th>
+            <th>
+                <strong>Naziv</strong>
+            </th>
+            <th>Cijena</th>
+            <th>Količina</th>
+            <th>Ukupno</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            decimal s = 0;
+        }
+        @foreach (Stavka stavka in (List<Stavka>)Session["kosarica"])
+        {
+            s += stavka.Jelo.Cijena * stavka.Kolicina;
+            <tr>
+                <td hidden>@stavka.Jelo.Id</td>
+                <td>@(stavka.Jelo.Naziv)</td>
+                <td>@(stavka.Jelo.Cijena)</td>
+                <td>@stavka.Kolicina</td>
+                <td>@(stavka.Jelo.Cijena*stavka.Kolicina)</td>
+                <td>@Html.ActionLink("Izbriši", "Izbrisi","Narudzba", new {id=stavka.Jelo.Id },new { @class = "btn btn-danger btn-sm" })</td>
+        </tr>
+        }
+        <tr>
+            <td align="right" colspan="3"><strong>Za platiti:</strong></td>
+            <td><strong>@s</strong></td>
+        </tr>
+
+
+
+
+
+    </tbody>
+</table>
+
+@Html.ActionLink("Nastavi kupnju", "Popis", "Meni")
+
+
+
+

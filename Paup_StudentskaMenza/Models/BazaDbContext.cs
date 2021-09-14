@@ -12,7 +12,7 @@ namespace Paup_StudentskaMenza.Models
     {
         public DbSet<Jela> PopisJela { get; set; }
         public DbSet<Meni> PopisMeni { get; set; }
-        public DbSet<StavkaNarudzbe> PopisNarudzbi { get; set; }
+       // public DbSet<StavkaNarudzbe> PopisNarudzbi { get; set; }
         public DbSet<Korisnik> PopisKorisnika { get; set; }
         public DbSet<Ovlast> PopisOvlasti { get; set; }
     }

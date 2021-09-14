@@ -204,7 +204,6 @@
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\Meni.cs" />
     <Compile Include="Models\Ovlast.cs" />
-    <Compile Include="Models\StavkaNarudzbe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -264,11 +263,11 @@
     <Content Include="Views\Meni\_PartialPopis.cshtml" />
     <Content Include="Views\Meni\BrisiStatus.cshtml" />
     <Content Include="Views\Meni\Brisi.cshtml" />
+    <Content Include="Views\Narudzba\Kosarica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Narudzba\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
