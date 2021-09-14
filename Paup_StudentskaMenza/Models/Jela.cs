@@ -34,7 +34,7 @@ namespace Paup_StudentskaMenza.Models
         [Required(ErrorMessage = "{0} je obavezno")]
         [DisplayFormat(DataFormatString = "{0:C1}", ApplyFormatInEditMode = false)]
         [DataType(DataType.Currency)]
-        public float? Cijena { get; set; }
+        public decimal Cijena { get; set; }
        
 
         [Column("vegetarijansko")]
@@ -46,14 +46,7 @@ namespace Paup_StudentskaMenza.Models
         [Display(Name = "Količina")]
         [Required(ErrorMessage = "{0} je obavezno")]
         public int kolicina { get; set; }
-        public enum Dani
-        {
-            Ponedjeljak,
-            Utorak,
-            Srijeda,
-            Četvrtak,
-            Petak
-            /**/
-        }
+        
+        
     }
 }

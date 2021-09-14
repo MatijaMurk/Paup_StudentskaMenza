@@ -19,8 +19,10 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44346</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -189,15 +191,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Misc\JelaRepo.cs" />
     <Compile Include="Misc\LogiraniKorisnik.cs" />
     <Compile Include="Misc\LogiraniKorisnikSerializeModel.cs" />
     <Compile Include="Misc\OvlastiKorisnik.cs" />
     <Compile Include="Misc\PasswordHelper.cs" />
     <Compile Include="Models\BazaDbContext.cs" />
+    <Compile Include="Models\Dani.cs" />
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\KorisnikPrijava.cs" />
     <Compile Include="Models\Jela.cs" />
     <Compile Include="Models\JelaDB.cs" />
+    <Compile Include="Models\Meni.cs" />
     <Compile Include="Models\Ovlast.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentiDB.cs" />
@@ -257,6 +262,7 @@
     <Content Include="Views\Jela\Azuriraj.cshtml" />
     <Content Include="Views\Jela\Create.cshtml" />
     <Content Include="Views\Jela\Delete.cshtml" />
+    <Content Include="Views\Meni\Dodaj.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
