@@ -18,8 +18,7 @@ namespace Paup_StudentskaMenza.Controllers
             var cultureInfo = CultureInfo.GetCultureInfo("hr-HR");
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            /*string[] newNames = { "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota", "Nedjelja" };
-            Thread.CurrentThread.CurrentCulture.DateTimeFormat.DayNames = newNames;*/
+            
         }
     }
 }

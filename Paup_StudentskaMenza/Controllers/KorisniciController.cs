@@ -111,7 +111,7 @@ namespace Paup_StudentskaMenza.Controllers
             if (ModelState.IsValid)
             {
                 model.Lozinka = Misc.PasswordHelper.IzracunajHash(model.LozinkaUnos);
-                model.SifraOvlasti = "KO";
+                model.SifraOvlasti = "MO";
 
                 bazaPodataka.PopisKorisnika.Add(model);
                 bazaPodataka.SaveChanges();

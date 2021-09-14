@@ -25,7 +25,7 @@ namespace Paup_StudentskaMenza
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-journal.css",
                       "~/Content/site.css"));
         }
     }

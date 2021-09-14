@@ -10,6 +10,7 @@ namespace Paup_StudentskaMenza.Misc
     public class LogiraniKorisnik : IPrincipal
     {
         public string KorisnickoIme { get; set; }
+        public string Email { get; set; }
         public string PrezimeIme { get; set; }
         public string Ovlast { get; set; }
 
@@ -27,12 +28,14 @@ namespace Paup_StudentskaMenza.Misc
             this.KorisnickoIme = kor.KorisnickoIme;
             this.PrezimeIme = kor.PrezimeIme;
             this.Ovlast = kor.SifraOvlasti;
-        }
+            this.Email = kor.Email;
+    }
 
         public LogiraniKorisnik(string korisnickoIme)
         {
             this.Identity = new GenericIdentity(korisnickoIme);
             this.KorisnickoIme = korisnickoIme;
+            
         }
     }
 }

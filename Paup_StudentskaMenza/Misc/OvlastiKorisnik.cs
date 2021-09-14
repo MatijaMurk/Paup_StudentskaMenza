@@ -8,6 +8,6 @@ namespace Paup_StudentskaMenza.Misc
     public class OvlastiKorisnik
     {
         public const string Administrator = "AD";
-        public const string Korisnik = "KO";
+        public const string Korisnik = "MO";
     }
 }

@@ -1,32 +1,26 @@
-﻿@{
+﻿@using Paup_StudentskaMenza.Models
+@model Mail
+@{
     ViewBag.Title = "Kontakt";
 }
 <h2>@ViewBag.Title</h2>
 
-<form>
+@using (Html.BeginForm("Contact", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.ValidationSummary()
+<div class="row">
     <div class="form-group">
-        <label for="text1" class="control-label">Jelo koje želiš vidjeti</label>
-        <input id="text1" name="text1" placeholder="Upiši svoj prijedlog" type="text" required="required" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="radio" class="control-label">Vegetarijansko</label>
-        <div>
-            <label class="radio-inline">
-                <input type="radio" name="radio" value="True">
-                Da
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="radio" value="False">
-                Ne
-            </label>
+        <label for="textArea" class="col-lg-2 control-label">Novo jelo</label>
+        <div class="col-lg-2">
+            @Html.TextAreaFor(model => model.Poruka, new { @placeholder = "Poruka *" })
         </div>
     </div>
-    <div class="form-group">
-        <button name="submit" type="submit" class="btn btn-primary">Pošalji</button>
-    </div>
-</form>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button name="submit" type="submit" class="btn btn-primary">Pošalji</button>
+        </div>
+    </div>
+</div>
+<span style="color:green">@ViewBag.Message</span>
+        }

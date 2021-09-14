@@ -22,10 +22,8 @@ namespace Paup_StudentskaMenza.Controllers
             ViewBag.Title = "Početna stranica";
             ViewBag.Menza = "Studentska menza";
            
-            return View(bazaPodataka.Jelo.ToList());
+            return View(bazaPodataka.PopisJela.ToList());
         }
-
-
 
         [AllowAnonymous]
 
@@ -43,7 +41,7 @@ namespace Paup_StudentskaMenza.Controllers
             //ako id postoji onda provjeravamo ako taj student postoji u bazi podataka
             else
             {
-                jelo = bazaPodataka.Jelo.FirstOrDefault(x => x.Id == id);
+                jelo = bazaPodataka.PopisJela.FirstOrDefault(x => x.Id == id);
 
                 //ako u listi nema studenta sa traženim Id-em onda je objekt student null
                 if (jelo == null)
@@ -87,7 +85,7 @@ namespace Paup_StudentskaMenza.Controllers
                 //ako model ima vrijednost parametra Id jednak 0 tada se radi o dodavanju novog studenta
                 else
                 {
-                    bazaPodataka.Jelo.Add(jelo);
+                    bazaPodataka.PopisJela.Add(jelo);
                 }
                 bazaPodataka.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,19 +103,7 @@ namespace Paup_StudentskaMenza.Controllers
             }
             return View(jelo);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Naziv,Opis,Cijena,Vegetarijansko")] Jela jelo)
-        {
-            if (ModelState.IsValid)
-            {
-                bazaPodataka.Jelo.Add(jelo);
-                bazaPodataka.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(jelo);
-        }
+      
 
         public ActionResult Delete(int? id)
         {
@@ -127,7 +113,7 @@ namespace Paup_StudentskaMenza.Controllers
             }
 
             //dohvaćamo studenta iz baze podataka na temelju id
-            Jela jelo = bazaPodataka.Jelo.FirstOrDefault(x => x.Id == id);
+            Jela jelo = bazaPodataka.PopisJela.FirstOrDefault(x => x.Id == id);
 
             //ako ne postoji student s tim id-em vraćamo HTTP status Not found
             if (jelo == null)
@@ -144,8 +130,8 @@ namespace Paup_StudentskaMenza.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Jela jelo = bazaPodataka.Jelo.Find(id);
-            bazaPodataka.Jelo.Remove(jelo);
+            Jela jelo = bazaPodataka.PopisJela.Find(id);
+            bazaPodataka.PopisJela.Remove(jelo);
             bazaPodataka.SaveChanges();
             return RedirectToAction("Index");
         }

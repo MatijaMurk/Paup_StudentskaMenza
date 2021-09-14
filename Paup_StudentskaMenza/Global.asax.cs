@@ -32,6 +32,7 @@ namespace Paup_StudentskaMenza
                 LogiraniKorisnik korisnik = new LogiraniKorisnik(authTicket.Name);
                 korisnik.PrezimeIme = serializeModel.PrezimeIme;
                 korisnik.Ovlast = serializeModel.Ovlast;
+                korisnik.Email = serializeModel.Email;
                 HttpContext.Current.User = korisnik;
             }
         }

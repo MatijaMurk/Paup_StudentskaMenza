@@ -25,7 +25,7 @@
         <th>Opis</th>
         <th>Cijena</th>
         <th>Vege</th>
-        <th>Količina</th>
+       
     </tr>
     @foreach (var jelo in Model)
     {
@@ -42,7 +42,7 @@
             {
                 <td>Ne</td>
             }
-            <td>@jelo.kolicina</td>
+          
             <td> @Html.ActionLink("Obriši", "Delete", new { id = jelo.Id }, new { @class = "btn btn-danger btn-sm" })</td>
             <td> @Html.ActionLink("Ažuriraj", "Azuriraj", new { id = jelo.Id }, new { @class = "btn btn-info btn-sm" })</td>
         </tr>
