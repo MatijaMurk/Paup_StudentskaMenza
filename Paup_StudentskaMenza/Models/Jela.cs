@@ -40,7 +40,7 @@ namespace Paup_StudentskaMenza.Models
         [Column("vegetarijansko")]
         [Display(Name = "Vegetarijansko")]
         [Required(ErrorMessage = "{0} je obavezno")]
-        public bool vege { get; set; }
+        public bool Vege { get; set; }
 
         
         

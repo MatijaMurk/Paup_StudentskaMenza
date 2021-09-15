@@ -1,64 +1,13 @@
 ﻿@using Paup_StudentskaMenza.Models
 
 @model Meni
-@*model Tuple<IEnumerable<SelectListItem>>*@
+
 
 @{
     ViewBag.Title = "Dodaj";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
-
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#Naziv").val(0);
-        $("#Naziv").change(function () {
-
-            var jeloId = $("#Naziv").val();
-            DohvatiCijenu(jeloId);
-        });
-
-        $("input[type=text]").change(function () {
-            IzracunajUkupnuCijenu();
-        });
-        $("#btnDodaj").click(function () {
-            DodajUMeni();
-        });
-    });
-
-    function DodajUMeni() {
-        var tblMeni
-    }
-
-    function IzracunajUkupnuCijenu() {
-        var jelocijena = $("#txtJeloCijena").val();
-        var kolicina = $("#txtKolicinaJela").val();
-
-        var ukupno = jelocijena * kolicina;
-
-        $("#txtUkupnaCijena").val(parseFloat(ukupno).toFixed(2));
-    }
-
-    function DohvatiCijenu(jeloId) {
-        $.ajax({
-            async: true,
-            type: 'GET',
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
-            data: { jeloId: jeloId },
-            url: '/meni/dohvatiCijenu',
-            success: function (data) {
-                $("#txtJeloCijena").val(parseFloat(data).toFixed(2));
-            },
-            error: function () {
-                alert("Problem s cijenom.");
-            }
-        });
-
-    }
-</script>
-
 <h3>Dodaj jelo</h3>
 
 @using (Html.BeginForm("Dodaj", "Meni", FormMethod.Post, new { @class = "form-horizontal", role = "form"})) 

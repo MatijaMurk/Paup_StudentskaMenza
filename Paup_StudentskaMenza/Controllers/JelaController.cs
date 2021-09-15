@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Paup_StudentskaMenza.Misc;
 using System.Net;
+using Paup_StudentskaMenza.Reports;
 
 namespace Paup_StudentskaMenza.Controllers
 {
@@ -62,6 +63,55 @@ namespace Paup_StudentskaMenza.Controllers
             //ViewBag.Status = status;
 
             return View(jelo);
+        }
+        [AllowAnonymous]
+        public ActionResult IspisJela(string naziv,  string cijena,  string sort, int? page)
+        {
+            //System.Threading.Thread.Sleep(200); //simulacija duže obrade zahtjeva
+
+            ViewBag.Sortiranje = sort;
+            ViewBag.NazivSort = String.IsNullOrEmpty(sort) ? "naziv_desc" : "";
+            ViewBag.CijenaSort = sort == "cijena" ? "smjer_desc" : "smjer";
+            ViewBag.Cijena = cijena;
+            ViewBag.Naziv = naziv;
+            
+            
+
+            var jela = bazaPodataka.PopisJela.ToList();
+
+            //filtriranje
+            if (!String.IsNullOrWhiteSpace(naziv))
+            {
+                jela = jela.Where(x => x.Naziv.ToUpper().Contains(naziv.ToUpper())).ToList();
+            }
+
+            if (!String.IsNullOrWhiteSpace(cijena))
+            {
+                jela = jela.Where(x => x.Cijena.ToString() == cijena).ToList();
+            }
+
+           
+            switch (sort)
+            {
+                case "naziv_desc":
+                    jela = jela.OrderByDescending(s => s.Naziv).ToList();
+                    break;
+                case "smjer":
+                    jela = jela.OrderBy(s => s.Cijena).ToList();
+                    break;
+                case "smjer_desc":
+                    jela = jela.OrderByDescending(s => s.Cijena).ToList();
+                    break;
+                default:
+                    jela = jela.OrderBy(s => s.Naziv).ToList();
+                    break;
+            }
+
+            JelaReport jelaReport = new JelaReport();
+            jelaReport.ListaJela(jela);
+
+            return File(jelaReport.Podaci, System.Net.Mime.MediaTypeNames.Application.Pdf,
+                "PopisJela.pdf");
         }
 
 

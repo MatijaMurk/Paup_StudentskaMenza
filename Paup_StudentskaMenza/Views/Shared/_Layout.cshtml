@@ -23,9 +23,10 @@
             </div>
             <div class="navbar-collapse collapse glyphicon-arrow-up" >
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Početna", "Index", "Home")</li>
                     <li>@Html.ActionLink("Meni", "Popis", "Meni")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                    
 
                     @if (User.Identity.IsAuthenticated &&
                         (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
@@ -38,6 +39,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)
                     {
+                    <li>
+                        <button style=" border: none;height: 30px;margin-top: 15px;margin-bottom: 15px;vertical-align: middle"  class="btn btn-success btn-md" onclick=" location.href='@Url.Action("Index", "SopingKosarica")' ;">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Košarica
+                        </button>
+                    </li>
                         <li>@Html.ActionLink(((User as LogiraniKorisnik).PrezimeIme), "Index", "Home")</li>
                         <li>@Html.ActionLink("Odjava", "Odjava", "Korisnici")</li>
                     }

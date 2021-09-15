@@ -24,20 +24,19 @@
             <h3> @DateTime.Now.AddDays(i).Date.ToString("dddd").ToUpper(), @DateTime.Now.AddDays(i).Date.ToShortDateString()</h3>
         }
 
-        <table id="tableJela" class="table table-responsive">
+        <table id="tableJela" class="table table-striped" >
 
             <thead style="color:palevioletred">
                 <tr>
                     <th hidden>Id</th>
 
-                    <th>
+                    <th scope="col">
                         <strong>Naziv</strong>
                     </th>
-                    <th>Opis</th>
+                    <th >Opis</th>
                     <th>Cijena</th>
                     <th>Vege</th>
-                    @if (User.Identity.IsAuthenticated &&
-((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator)))
+                    @if (i == 0 && User.Identity.IsAuthenticated)
                     {
                         <th>Akcije</th>
                     }
@@ -55,7 +54,7 @@
                     <td>@(meni.NazivJelo?.Naziv)</td>
                     <td>@(meni.NazivJelo?.Opis)</td>
                     <td>@(meni.NazivJelo?.Cijena)</td>
-                    @if (meni.NazivJelo.vege == true)
+                    @if (meni.NazivJelo.Vege == true)
                     {
                         <td>Da</td>
                     }
@@ -67,49 +66,40 @@
                     @if (i == 0 && User.Identity.IsAuthenticated)
                     {
 
-                        <td>@Html.ActionLink("Naruči", "Naruci", "Narudzba", new { id = meni.idjelo }, new { @class = "btn btn-success btn-sm " })</td>
+                <td>
+                    @Html.ActionLink("Dodaj u košaricu", "AddToCart", "SopingKosarica", new { id = meni.idjelo }, new { @class = "btn btn-success btn-sm " })
+                    @if (User.Identity.IsAuthenticated &&
+                    ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator)))
+                    {
+                    @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm " })
+                    @Html.ActionLink("Izbriši", "Brisi", new { id = meni.Idmeni }, new { @class = "btn btn-danger btn-sm" })
 
 
 
+                    }
+                </td>
+                    }
+
+
+                    else
+                    {
                         if (User.Identity.IsAuthenticated &&
                         ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator)))
                         {
 
 
-
-                            <td>@Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm " })</td>
-
-
                             <td>
+                                @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm" })
+                                                    
                                 @Html.ActionLink("Izbriši", "Brisi", new { id = meni.Idmeni }, new { @class = "btn btn-danger btn-sm" })
                             </td>
 
-
-                                }
-                                }
-
-
-                                else
-                                {
-                                if (User.Identity.IsAuthenticated &&
-                                ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator)))
-                                {
-
-
-                <td>
-                    @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm" })
-                </td>
-
-                <td>
-                    @Html.ActionLink("Izbriši", "Brisi", new { id = meni.Idmeni }, new { @class = "btn btn-danger btn-sm" })
-                </td>
-
-                            }
-                            }
+                        }
+                    }
 
 
 
-                    </tr>
+                </tr>
                         }
                     }
                 }
@@ -128,13 +118,7 @@
         </table>
     }
 
-    <p>
-        <a href="@Url.Action("IspisMenija", "Meni",
-                new {  naziv = ViewBag.Naziv,
-                     })" class="btn btn-primary">
-            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Kreiraj PDF
-        </a>
-    </p>
+   
 </div>
 
 

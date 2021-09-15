@@ -47,8 +47,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -58,6 +58,9 @@
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.14.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.14.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
@@ -182,13 +185,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\FormAuthenticationTicket.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JelaController.cs" />
     <Compile Include="Controllers\KorisniciController.cs" />
     <Compile Include="Controllers\MeniController.cs" />
-    <Compile Include="Controllers\NarudzbaController.cs" />
-    <Compile Include="Controllers\Stavka.cs" />
+    <Compile Include="Controllers\SopingKosaricaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,13 +201,20 @@
     <Compile Include="Misc\PasswordHelper.cs" />
     <Compile Include="Models\BazaDbContext.cs" />
     <Compile Include="Models\Dani.cs" />
+    <Compile Include="Models\DetaljiNarudzbe.cs" />
     <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\KorisnikPrijava.cs" />
     <Compile Include="Models\Jela.cs" />
+    <Compile Include="Models\Kosarica.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\Meni.cs" />
+    <Compile Include="Models\Narudzba.cs" />
     <Compile Include="Models\Ovlast.cs" />
+    <Compile Include="Models\SopingKosarica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\JelaReport.cs" />
+    <Compile Include="ViewModels\SopingKosaricaViewModel.cs" />
+    <Compile Include="ViewModels\UkloniKosaricuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-journal.css" />
@@ -263,7 +273,9 @@
     <Content Include="Views\Meni\_PartialPopis.cshtml" />
     <Content Include="Views\Meni\BrisiStatus.cshtml" />
     <Content Include="Views\Meni\Brisi.cshtml" />
-    <Content Include="Views\Narudzba\Kosarica.cshtml" />
+    <Content Include="Views\SopingKosarica\Index.cshtml" />
+    <Content Include="Views\Checkout\Placanje.cshtml" />
+    <Content Include="Views\Checkout\Izvrseno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,86 @@
+﻿@using Paup_StudentskaMenza.ViewModels
+@model SopingKosaricaViewModel
+
+@{
+    ViewBag.Title = "Košarica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"
+        type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.post("/SopingKosarica/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                        $('#cart-status').text('Košarica (' + data.CartCount + ')');
+                    });
+            }
+        });
+    });
+</script>
+
+<h2>Košarica</h2>
+
+<h3>
+    <strong>Pregledaj stavke:</strong> 
+</h3>
+
+<div id="update-message">
+</div>
+<table class="table table-responsive">
+    <tr>
+        <th>
+           Naziv jela
+        </th>
+        <th>
+            Cijena
+        </th>
+        <th>
+            Količina
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr id="row-@item.StavkaId">
+            <td>
+                @Html.ActionLink(item.Jelo.Naziv,"Popis", "Meni", new { id = item.JeloId }, null)
+            </td>
+            <td>
+                @item.Jelo.Cijena
+            </td>
+            <td id="item-count-@item.StavkaId">
+                @item.Broj
+            </td>
+            <td>
+                <a href="#" class="RemoveLink btn btn-danger btn-sm" data-id="@item.StavkaId">Ukloni</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Za platiti:
+        </td>
+      
+        <td id="cart-total">
+            @Model.KosaricaUkupno
+        </td>
+    </tr>
+</table>
+<p class="button">
+    @Html.ActionLink("Izvrši narudžbu ", "Placanje", "Checkout", "", new { @class = "btn btn-info btn-sm " })
+</p>

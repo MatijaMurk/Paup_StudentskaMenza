@@ -34,7 +34,7 @@
             <td>@jelo.Naziv</td>
             <td>@jelo.Opis</td>
             <td>@jelo.Cijena </td>
-            @if (jelo.vege == true)
+            @if (jelo.Vege == true)
             {
                 <td>Da</td>
             }
@@ -51,3 +51,11 @@
     }
 
 </table>
+
+
+<p>
+    <a href="@Url.Action("IspisJela", "Jela",
+                new { naziv = ViewBag.Naziv, cijena = ViewBag.Cijena, sort = ViewBag.Sortiranje })" class="btn btn-primary">
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Kreiraj PDF
+    </a>
+</p>
