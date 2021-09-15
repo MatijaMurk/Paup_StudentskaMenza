@@ -122,13 +122,13 @@ namespace Paup_StudentskaMenza.Models
             // adding the order details for each
             foreach (var item in cartItems)
             {
-                var orderDetail = new DetaljiNarudzbe
-                {
-                    JeloId = item.JeloId,
-                    NarudzbaId = narudzba.NarudzbaId,
-                    Cijena = item.Jelo.Cijena,
-                    Kolicina = item.Broj
-                };
+                    var orderDetail = new DetaljiNarudzbe
+                    {
+                        JeloId = item.JeloId,
+                        NarudzbaId = narudzba.NarudzbaId,
+                        Cijena = item.Jelo.Cijena,
+                        Kolicina = item.Broj
+                    };
                 // Set the order total of the shopping cart
                 orderTotal += (item.Broj * item.Jelo.Cijena);
 
