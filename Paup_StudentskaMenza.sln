@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paup_StudentskaMenza", "Paup_StudentskaMenza\Paup_StudentskaMenza.csproj", "{B1BEC206-4BDC-4A76-A3BB-17277019F879}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paup_StudentskaMenza_UnitTest", "Paup_StudentskaMenza_UnitTest\Paup_StudentskaMenza_UnitTest.csproj", "{CD37D0E7-BA8B-4D07-9D40-D6BFBC847B92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B1BEC206-4BDC-4A76-A3BB-17277019F879}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1BEC206-4BDC-4A76-A3BB-17277019F879}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1BEC206-4BDC-4A76-A3BB-17277019F879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD37D0E7-BA8B-4D07-9D40-D6BFBC847B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD37D0E7-BA8B-4D07-9D40-D6BFBC847B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD37D0E7-BA8B-4D07-9D40-D6BFBC847B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD37D0E7-BA8B-4D07-9D40-D6BFBC847B92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

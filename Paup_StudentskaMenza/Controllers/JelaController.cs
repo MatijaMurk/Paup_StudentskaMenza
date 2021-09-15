@@ -20,7 +20,7 @@ namespace Paup_StudentskaMenza.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            ViewBag.Title = "Početna stranica";
+            ViewBag.Title = "Popis Jela";
             ViewBag.Menza = "Studentska menza";
            
             return View(bazaPodataka.PopisJela.ToList());

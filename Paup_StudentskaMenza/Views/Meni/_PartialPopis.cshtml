@@ -63,16 +63,26 @@
                         <td>Ne</td>
                     }
 
-                    @if (i == 0 && User.Identity.IsAuthenticated)
+                    @if (i == 0)
+                    {
+                <td>
+                    @if (User.Identity.IsAuthenticated)
                     {
 
-                <td>
-                    @Html.ActionLink("Dodaj u košaricu", "AddToCart", "SopingKosarica", new { id = meni.idjelo }, new { @class = "btn btn-success btn-sm " })
-                    @if (User.Identity.IsAuthenticated &&
-                    ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator)))
+                        @Html.ActionLink("Dodaj u košaricu", "AddToCart", "SopingKosarica", new { id = meni.idjelo }, new { @class = "btn btn-success btn-sm " })
+                    }
+                    else
                     {
-                    @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm " })
-                    @Html.ActionLink("Izbriši", "Brisi", new { id = meni.Idmeni }, new { @class = "btn btn-danger btn-sm" })
+                        @Html.ActionLink("Dodaj u košaricu", "Prijava", "Korisnici", new { id = meni.idjelo }, new { @class = "btn btn-success btn-sm " })
+                    }
+
+
+
+                    @if (User.Identity.IsAuthenticated &&
+                        ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator)))
+                    {
+                        @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm " })
+                        @Html.ActionLink("Izbriši", "Brisi", new { id = meni.Idmeni }, new { @class = "btn btn-danger btn-sm" })
 
 
 
@@ -88,18 +98,16 @@
                         {
 
 
-                            <td>
-                                @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm" })
-                                                    
-                                @Html.ActionLink("Izbriši", "Brisi", new { id = meni.Idmeni }, new { @class = "btn btn-danger btn-sm" })
-                            </td>
+                        <td>
+                            @Html.ActionLink("Ažuriraj", "Azuriraj", "Jela", new { id = meni.idjelo }, new { @class = "btn btn-info btn-sm" })
+
+                            @Html.ActionLink("Izbriši", "Brisi", new { id = meni.Idmeni }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
 
                         }
+
                     }
-
-
-
-                </tr>
+                    </tr>
                         }
                     }
                 }
